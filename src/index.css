@@ -1,14 +1,13 @@
-/* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: #901e59;
+  --neutral: #fff;
+  --dark: #555;
 }
 body {
   background: #f1f1f1;
   margin: 0;
-  font-family: "Poppins";
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* auth forms */
@@ -16,7 +15,7 @@ form.login {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
-  background: #fff;
+  background: var(--neutral);
   border-radius: 4px;
 }
 
@@ -39,26 +38,15 @@ input {
 form button {
   background: var(--primary);
   border: 0;
-  color: #fff;
+  color: var(--neutral);
   padding: 10px;
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
 }
-div.error {
-  padding: 10px;
-  background: #ffefef;
-  border: 1px solid var(--error);
-  color: var(--error);
-  border-radius: 4px;
-  margin: 20px 0;
-}
-input.error {
-  border: 1px solid var(--error);
-}
 
 header {
-  background: #fff;
+  background: var(--neutral);
 }
 header .container {
   max-width: 1400px;
@@ -69,9 +57,10 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: var(--primary);
   text-decoration: none;
 }
+
 .pages{
   max-width: 1400px;
   padding: 20px;
@@ -87,24 +76,30 @@ header a {
   color: var(--primary);
 }
 .flights {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  width: 50%;
+  margin: auto;
 }
-.flight-details {
-  background: #fff;
-  border-radius: 4px;
-  margin: 1em auto;
-  padding: 1rem;
-  width: 15em;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-
-  display: flex;
+#flights-table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.flight-details p {
-  margin: 0;
-  font-size: 0.9em;
-  color: #555;
+#flights-table td, #flights-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#flights-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#flights-table tr:hover {background-color: #ddd;}
+
+#flights-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--dark);
+  color:  var(--neutral);
 }
 
 /* navbar */
@@ -116,12 +111,11 @@ nav a {
   margin-left: 10px;
 }
 nav button {
-  background: #fff;
+  background: var(--neutral);
   color: var(--primary);
   border: 2px solid var(--primary);
   padding: 6px 10px;
   border-radius: 4px;
-  font-family: "Poppins";
   cursor: pointer;
   font-size: 1em;
   margin-left: 10px;

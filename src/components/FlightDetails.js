@@ -4,9 +4,14 @@ const FlightDetails = (flight) => {
   let unixTimeFormat = firstSeen * 1000;
   const date = new Date(unixTimeFormat).toLocaleTimeString();
   return (
-    <div className="flight-details">
-      <p>{`${icao24 ? icao24 : "N/A"} | ${date ? date : "N/A"} | ${estDepartureAirport ? estDepartureAirport : "N/A"} | ${estArrivalAirport ? estArrivalAirport : "N/A"}`}</p>
-    </div>
+    <tbody>
+      <tr>
+        <td>{icao24 ? icao24 : "N/A"}</td>
+        <td>{date ? date : "N/A"}</td>
+        <td>{estDepartureAirport ? estDepartureAirport : "N/A"}</td>
+        <td>{estArrivalAirport ? estArrivalAirport : "N/A"}</td>
+      </tr>
+    </tbody>
   );
 };
 

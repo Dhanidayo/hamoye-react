@@ -5,12 +5,14 @@ import FlightDetails from "../components/FlightDetails";
 const Dashboard = () => {
   const user = localStorage.getItem("hamoye-user");
   const [flightDetails, setFlightDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
+    const fetchFlightDetails = async () => {
       if (!user) {
         return;
       }
+      setIsLoading(true);
 
       let config = {
         method: "get",
@@ -31,20 +33,30 @@ const Dashboard = () => {
           console.log(error);
         });
 
-      return;
+      setIsLoading(false);
     };
 
-    fetchWorkouts();
+    fetchFlightDetails();
   }, [user]);
 
   return (
     <div className="dashboard">
-        <h3>Flights arriving and departing from all airports</h3>
+      <h3>Flights arriving and departing from all airports</h3>
       <div className="flights">
-        {flightDetails &&
-          flightDetails.map((flight, index) => (
-            <FlightDetails key={index} flight={flight} />
-          ))}
+        <table id="flights-table">
+          <thead>
+            <tr>
+              <th>Airport</th>
+              <th>Time</th>
+              <th>Departure</th>
+              <th>Arriving</th>
+            </tr>
+          </thead>
+          {isLoading ? <div>Loading...</div> :
+            flightDetails.map((flight, index) => (
+              <FlightDetails key={index} flight={flight} />
+            ))}
+        </table>
       </div>
     </div>
   );
