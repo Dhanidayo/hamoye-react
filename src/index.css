@@ -44,6 +44,12 @@ form button {
   cursor: pointer;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: -1em;
+}
+
 header {
   background: var(--neutral);
 }
@@ -97,7 +103,7 @@ header a {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: var(--dark);
+  background-color: var(--primary);
   color:  var(--neutral);
 }
 
