@@ -12,6 +12,7 @@ body {
   font-family: "Poppins";
 }
 
+
 /* auth forms */
 form.login {
   max-width: 400px;
@@ -187,6 +188,7 @@ nav button {
 footer {
   background-color: var(--neutral);
   color: var(--primary);
+  margin: 3em 0 0;
   padding: 1rem;
   text-align: center;
 }

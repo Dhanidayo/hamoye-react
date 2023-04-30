@@ -3,6 +3,7 @@ import axios from "axios";
 import FlightDetails from "../components/FlightDetails";
 import Spinner from "../components/spinner";
 import Pagination from "../components/pagination";
+import Footer from "../components/footer";
 
 const Dashboard = () => {
   const user = localStorage.getItem("hamoye-user");
@@ -56,37 +57,40 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <h3>Flights arriving and departing from all airports</h3>
-      <div className="flights">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <>
-            <table id="flights-table">
-              <thead>
-                <tr>
-                  <th>Airport</th>
-                  <th>Time</th>
-                  <th>Departure</th>
-                  <th>Arriving</th>
-                </tr>
-              </thead>
-              {currentData.map((flight, index) => (
-                <FlightDetails key={index} flight={flight} />
-              ))}
-            </table>
-            <Pagination
-              nPages={nPages}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageLimit={5}
-            />
-          </>
-        )}
+    <>
+      <div className="dashboard">
+        <h3>Flights arriving and departing from all airports</h3>
+        <div className="flights">
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <>
+              <table id="flights-table">
+                <thead>
+                  <tr>
+                    <th>Airport</th>
+                    <th>Time</th>
+                    <th>Departure</th>
+                    <th>Arriving</th>
+                  </tr>
+                </thead>
+                {currentData.map((flight, index) => (
+                  <FlightDetails key={index} flight={flight} />
+                ))}
+              </table>
+              <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                pageLimit={5}
+              />
+            </>
+          )}
+        </div>
+        {errorMsg && <div className="error">{errorMsg}</div>}
       </div>
-      {errorMsg && <div className="error">{errorMsg}</div>}
-    </div>
+      <Footer />
+    </>
   );
 };
 
