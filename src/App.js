@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/auth/login";
 import Navbar from "./components/Navbar";
+import Footer from "./components/footer";
 
 const ProtectedRoute = ({ children }) => {
   return localStorage.getItem("hamoye-user") ? (
@@ -42,6 +43,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
     </div>
   );
