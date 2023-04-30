@@ -1,16 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const user = localStorage.getItem("hamoye-user");
-    const navigate = useNavigate();
+  const user = localStorage.getItem("hamoye-user");
+  const navigate = useNavigate();
 
-    const handleClick = () => {
-        localStorage.removeItem("hamoye-user");
-        navigate("/login");
-      };
+  const handleClick = () => {
+    localStorage.removeItem("hamoye-user");
+    navigate("/login");
+  };
 
-    return (
-        <header>
+  return (
+    <header>
       <div className="container">
         <Link to="/">
           <h1>Hamoye</h1>
@@ -18,14 +18,18 @@ const Navbar = () => {
         <nav>
           {user && (
             <div>
-              <span>Hi {user.split('@')[0].toUpperCase()}</span>
+              <span>
+                Hi{" "}
+                {user.split("@")[0].charAt(0).toUpperCase() +
+                  user.split("@")[0].slice(1)}
+              </span>
               <button onClick={handleClick}>Log out</button>
             </div>
           )}
         </nav>
       </div>
     </header>
-    );
-}
- 
+  );
+};
+
 export default Navbar;
