@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const FlightDetails = (flight) => {
   const {
     firstSeen,
@@ -6,7 +8,9 @@ const FlightDetails = (flight) => {
     estArrivalAirportHorizDistance,
   } = flight.flight;
   let unixTimeFormat = firstSeen * 1000;
-  const date = new Date(unixTimeFormat).toLocaleTimeString();
+  const date = moment(unixTimeFormat)
+    .format("YYYY-MM-DDTkk:mm A")
+    .split("T")[1];
   return (
     <tbody>
       <tr>

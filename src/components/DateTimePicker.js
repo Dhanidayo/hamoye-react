@@ -6,7 +6,6 @@ const DateTimePicker = ({ dateValue, onChange, handleSearch }) => {
                 type="datetime-local"
                 name="datetime"
                 id="datetime"
-                // min={new Date().toISOString().slice(0, -8).split('T')[0]}
                 value={dateValue}
                 onChange={onChange}
               />

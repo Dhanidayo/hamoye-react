@@ -63,6 +63,7 @@ const Dashboard = () => {
   };
 
   const onChange = (e) => {
+    console.log("Target", e.target.value);
     setDateValue(e.target.value);
   };
 
