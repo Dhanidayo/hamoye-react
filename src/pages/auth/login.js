@@ -38,7 +38,7 @@ const Login = () => {
 
       let errMsg = "";
       if (!minLengthPassword) {
-        errMsg = "Password should be at least a minumum of 6 characters";
+        errMsg = "Password should be a minumum of 6 characters";
       } else {
         errMsg = "";
       }
