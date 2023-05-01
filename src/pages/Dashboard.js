@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import DataTable from "../components/DataTable";
+import DateTimePicker from "../components/DateTimePicker";
 
 const Dashboard = () => {
   const user = localStorage.getItem("hamoye-user");
   const [flightDetails, setFlightDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [dateValue, setDateValue] = useState(
+    moment(new Date()).format("YYYY-MM-DDTkk:mm")
+  );
+  const [filteredList, setFilteredList] = useState(flightDetails);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(20);
 
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
-  const currentData = flightDetails.slice(indexOfFirstData, indexOfLastData);
-  const nPages = Math.ceil(flightDetails.length / dataPerPage);
+  const currentData = filteredList.slice(indexOfFirstData, indexOfLastData);
+  const nPages = Math.ceil(filteredList.length / dataPerPage);
 
   useEffect(() => {
     fetchFlightDetails();
@@ -46,6 +52,7 @@ const Dashboard = () => {
       .then((response) => {
         const res = response.data;
         setFlightDetails(res);
+        setFilteredList(res);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -55,10 +62,35 @@ const Dashboard = () => {
       });
   };
 
+  const onChange = (e) => {
+    setDateValue(e.target.value);
+  };
+
+  const filterByDateTime = () => {
+    const formattedValue = new Date(dateValue).getTime() / 1000;
+    try {
+      let result = flightDetails.filter((val) => {
+        return val.firstSeen === formattedValue;
+      });
+      if (result.length === 0) {
+        setErrorMsg("No data found");
+      } else {
+        setFilteredList(result);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="dashboard">
         <h3>Flights arriving and departing from all airports</h3>
+        <DateTimePicker
+          dateValue={dateValue}
+          onChange={onChange}
+          handleSearch={filterByDateTime}
+        />
         {errorMsg ? (
           <div className="error">{errorMsg}</div>
         ) : (

@@ -6,7 +6,7 @@ const FlightDetails = (flight) => {
     estArrivalAirportHorizDistance,
   } = flight.flight;
   let unixTimeFormat = firstSeen * 1000;
-  const date = new Date(unixTimeFormat).toLocaleString();
+  const date = new Date(unixTimeFormat).toLocaleTimeString();
   return (
     <tbody>
       <tr>
