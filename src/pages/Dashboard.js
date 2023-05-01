@@ -70,8 +70,8 @@ const Dashboard = () => {
                   <tr>
                     <th>Airport</th>
                     <th>Time</th>
-                    <th>Departure</th>
                     <th>Arriving</th>
+                    <th>Departing</th>
                   </tr>
                 </thead>
                 {currentData.map((flight, index) => (

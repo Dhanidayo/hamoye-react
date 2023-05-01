@@ -8,8 +8,8 @@ const FlightDetails = (flight) => {
       <tr>
         <td>{icao24 ? icao24 : "N/A"}</td>
         <td>{date ? date : "N/A"}</td>
-        <td>{estDepartureAirport ? estDepartureAirport : "N/A"}</td>
         <td>{estArrivalAirport ? estArrivalAirport : "N/A"}</td>
+        <td>{estDepartureAirport ? estDepartureAirport : "N/A"}</td>
       </tr>
     </tbody>
   );
