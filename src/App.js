@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/auth/login";
+import Login from "./pages/auth/Login";
 import Navbar from "./components/Navbar";
 
 const ProtectedRoute = ({ children }) => {

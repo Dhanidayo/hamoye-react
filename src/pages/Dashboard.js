@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import FlightDetails from "../components/FlightDetails";
-import Spinner from "../components/spinner";
-import Pagination from "../components/pagination";
-import Footer from "../components/footer";
+import Spinner from "../components/Spinner";
+import Pagination from "../components/Pagination";
+import Footer from "../components/Footer";
+import DataTable from "../components/DataTable";
 
 const Dashboard = () => {
   const user = localStorage.getItem("hamoye-user");
@@ -45,7 +45,6 @@ const Dashboard = () => {
       .request(config)
       .then((response) => {
         const res = response.data;
-        // console.log("Response>>>>>", res);
         setFlightDetails(res);
         setIsLoading(false);
       })
@@ -60,34 +59,28 @@ const Dashboard = () => {
     <>
       <div className="dashboard">
         <h3>Flights arriving and departing from all airports</h3>
-        <div className="flights">
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <>
-              <table id="flights-table">
-                <thead>
-                  <tr>
-                    <th>Airport</th>
-                    <th>Time</th>
-                    <th>Arriving</th>
-                    <th>Departing</th>
-                  </tr>
-                </thead>
-                {currentData.map((flight, index) => (
-                  <FlightDetails key={index} flight={flight} />
-                ))}
-              </table>
-              <Pagination
-                nPages={nPages}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                pageLimit={5}
-              />
-            </>
-          )}
-        </div>
-        {errorMsg && <div className="error">{errorMsg}</div>}
+        {errorMsg ? (
+          <div className="error">{errorMsg}</div>
+        ) : (
+          <div className="flights">
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <>
+                <DataTable
+                  tableHead={["Airport", "Time", "Arriving", "Departing"]}
+                  tableData={currentData}
+                />
+                <Pagination
+                  nPages={nPages}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  pageLimit={5}
+                />
+              </>
+            )}
+          </div>
+        )}
       </div>
       <Footer />
     </>
