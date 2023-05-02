@@ -2,6 +2,7 @@ const DateTimePicker = ({ dateValue, onChange, handleSearch }) => {
   return (
     <>
       <div className="date-container">
+        <label>Pick time:</label>
         <input
           type="datetime-local"
           name="datetime"

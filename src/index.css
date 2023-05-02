@@ -112,14 +112,14 @@ header nav {
 }
 
 .date-container {
-  /* width: 25%; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 50%;
 }
 
 #datetime {
-  width: 70%;
+  width: 57%;
   margin: 0;
 }
 
@@ -161,7 +161,7 @@ header nav {
 
 .flights {
   width: 50%;
-  margin: auto;
+  margin: 1em auto 2em;
 }
 
 #flights-table {
@@ -273,36 +273,67 @@ footer {
   text-align: center;
 }
 
-@media screen and (max-width: 1113px) {
+@media screen and (max-width: 1257px) {
+  .date-container {
+    width: 60%;
+  }
+
   #datetime {
-    width: 75%;
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 1152px) {
+  .date-container {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 1064px) {
+  .date-container {
+    width: 69%;
   }
 }
 
 @media screen and (max-width: 1026px) {
-  #datetime {
-    width: 70%;
-  } 
+  .date-container {
+    width: 50%;
+  }
+
   .flights, .flex-container {
     width: 70%;
   }
 }
 
-@media screen and (max-width: 1000px) {
-  #datetime {
-    width: 70%;
-  }
-}
-
-@media screen and (max-width: 825px) {
+@media screen and (max-width: 992px) {
   .date-container {
-    width: 48%;
+    width: 55%;
   }
 }
 
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 914px) {
+  .date-container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 832px) {
+  .date-container {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 770px) {
   .flights, .flex-container {
     width: 80%;
+  }
+
+  .date-container {
+    width: 58%;
+  }
+
+  #datetime {
+    width: 57%;
   }
 
   .dashboard,
@@ -311,15 +342,15 @@ footer {
   }
 }
 
-@media screen and (max-width: 727px) {
+@media screen and (max-width: 735px) {
   .date-container {
-    width: 50%;
+    width: 60%;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 707px) {
   .date-container {
-    width: 53%;
+    width: 64%;
   }
 }
 
@@ -330,94 +361,81 @@ footer {
   }
 }
 
-@media screen and (max-width: 664px) {
+@media screen and (max-width: 669px) {
   .dashboard,
   footer {
     font-size: 0.65rem;
   }
 
   .date-container {
-    width: 55%;
-  }
-}
-
-@media screen and (max-width: 642px) {
-  .date-container {
-    width: 55%;
+    width: 65%;
   }
 
   #datetime {
-    width: 75%;
-  }
-}
-
-@media screen and (max-width: 597px) {
-  .date-container {
-    width: 57%;
-  }
-}
-
-@media screen and (max-width: 574px) {
-  .date-container {
     width: 60%;
   }
 }
 
-@media screen and (max-width: 550px) {
-  .flex-container {
-    width: 77%;
-  }
-  
-  .date-container {
-    width: 65%;
-  }
-}
-
-@media screen and (max-width: 527px) {
-  .date-container {
-    width: 68%;
-  }
-}
-
-@media screen and (max-width: 509px) {
+@media screen and (max-width: 625px) {
   .date-container {
     width: 70%;
   }
 }
 
+@media screen and (max-width: 585px) {
+  .date-container {
+    width: 75%;
+    margin: 1em auto;
+  }
+
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 552px) {
+  .flex-container, .date-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 517px) {
+  .date-container {
+    width: 85%;
+  }
+}
+
 @media screen and (max-width: 497px) {
   .date-container {
-    width: 72%;
+    width: 90%;
   }
 }
 
 @media screen and (max-width: 480px) {
   .date-container {
-    width: 75%;
+    width: 95%;
   }
 }
 
 @media screen and (max-width: 465px) {
   .date-container {
-    width: 80%;
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 436px) {
-  .flex-container {
-    flex-direction: column;
-  }
-
-  .date-container {
-    margin-top: 1em;
-    width: 85%;
+@media screen and (max-width: 419px) {
+  #datetime {
+    width: 62%;
   }
 }
-
 
 @media screen and (max-width: 415px) {
   .flights {
     width: 98%;
+  }
+
+  .flex-container {
+    width: 88%;
   }
 
   .container nav button {
@@ -429,24 +447,16 @@ footer {
   footer {
     font-size: 0.65rem;
   }
-
-  .date-container {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 394px) {
-  .date-container {
-    width: 95%;
-  }
 }
 
 @media screen and (max-width: 375px) {
   .flex-container {
-    width: 85%;
+    width: 95%;
   }
+}
 
-  .date-container {
+@media screen and (max-width: 352px) {
+  .flex-container {
     width: 100%;
   }
 }
@@ -466,8 +476,28 @@ footer {
   }
 }
 
-@media screen and (max-width: 326px) {
-  .flex-container {
-    width: 100%;
+@media screen and (max-width: 335px) {
+  #datetime {
+    width: 60%;
+    font-size: 0.65rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  #datetime {
+    width: 59%;
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  .date-container label {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  #datetime, .date-container label {
+    font-size: 0.5rem;
   }
 }
