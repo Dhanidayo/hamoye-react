@@ -72,7 +72,6 @@ const Dashboard = () => {
       .request(config)
       .then((response) => {
         const res = response.data;
-        console.log("RESPONSE", res);
         setState((state) => ({
           ...state,
           flightDetails: res,
@@ -122,15 +121,7 @@ const Dashboard = () => {
   };
 
   const reset = () => {
-    try {
-      fetchFlightDetails(beginTimeStamp, endTimestamp);
-      setState((state) => ({
-        ...state,
-        dateValue: moment(new Date()).format("YYYY-MM-DDTkk:mm"),
-      }));
-    } catch (error) {
-      console.error(error);
-    }
+    window.location.reload(false);
   };
 
   return (
