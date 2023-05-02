@@ -57,6 +57,7 @@ const Dashboard = () => {
     setState((state) => ({
       ...state,
       isLoading: true,
+      totalFlights: 0,
     }));
 
     let config = {
@@ -71,6 +72,7 @@ const Dashboard = () => {
       .request(config)
       .then((response) => {
         const res = response.data;
+        console.log("RESPONSE", res);
         setState((state) => ({
           ...state,
           flightDetails: res,
@@ -80,12 +82,23 @@ const Dashboard = () => {
         setFilteredList(res);
       })
       .catch((error) => {
-        console.log(error);
-        setState((state) => ({
-          ...state,
-          errorMsg: "Unable to fetch data",
-          isLoading: false,
-        }));
+        if (error.response.status === 404) {
+          console.log(error);
+          setState((state) => ({
+            ...state,
+            errorMsg: "No data found",
+            totalFlights: "0",
+            isLoading: false,
+          }));
+        } else {
+          console.log(error);
+          setState((state) => ({
+            ...state,
+            errorMsg: "Unable to fetch data",
+            totalFlights: "0",
+            isLoading: false,
+          }));
+        }
       });
   };
 
@@ -105,19 +118,19 @@ const Dashboard = () => {
       await fetchFlightDetails(last2hrsTimestamp, selectedTimeStamp);
     } catch (error) {
       console.error(error);
-      setState((state) => ({
-        ...state,
-        errorMsg: "Unable to fetch data",
-      }));
     }
   };
 
   const reset = () => {
-    fetchFlightDetails(beginTimeStamp, endTimestamp);
-    setState((state) => ({
-      ...state,
-      dateValue: moment(new Date()).format("YYYY-MM-DDTkk:mm"),
-    }));
+    try {
+      fetchFlightDetails(beginTimeStamp, endTimestamp);
+      setState((state) => ({
+        ...state,
+        dateValue: moment(new Date()).format("YYYY-MM-DDTkk:mm"),
+      }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -145,18 +158,20 @@ const Dashboard = () => {
             {isLoading ? (
               <Spinner />
             ) : (
-              <>
-                <DataTable
-                  tableHead={["Airport", "Time", "Arriving", "Departing"]}
-                  tableData={currentData}
-                />
-                <Pagination
-                  nPages={nPages}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  pageLimit={5}
-                />
-              </>
+              filteredList.length !== 0 && (
+                <>
+                  <DataTable
+                    tableHead={["Airport", "Time", "Arriving", "Departing"]}
+                    tableData={currentData}
+                  />
+                  <Pagination
+                    nPages={nPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    pageLimit={5}
+                  />
+                </>
+              )
             )}
           </div>
         )}
