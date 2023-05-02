@@ -10,7 +10,7 @@ const FlightDetails = (flight) => {
   let unixTimeFormat = firstSeen * 1000;
   const date = moment(unixTimeFormat)
     .format("YYYY-MM-DDTkk:mm A")
-    // .split("T")[1];
+    .split("T")[1];
   return (
     <tbody>
       <tr>
