@@ -3,14 +3,9 @@ import moment from "moment";
 export const database = [
   {
     email: "user@hamoye.com",
-    password: "user123",
+    password: "user123!",
   },
 ];
-
-export const errors = {
-  mail: "invalid username",
-  pass: "invalid password"
-};
 
 export const getCurrentDate = () => {
   return moment().format("YYYY-MM-DDTkk:mm");

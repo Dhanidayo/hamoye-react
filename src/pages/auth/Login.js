@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { database } from "../../utils/helpers";
+import { Slide, toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -50,9 +51,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Find user login info
+    // Find user from db
     const userData = database.find((user) => user.email === email);
-    console.log("UserData", userData, password, email);
 
     if (!userData) {
       setPassErr("Invalid credentials");
@@ -62,6 +62,11 @@ const Login = () => {
       } else if (email !== userData.email) {
         setEmailErr("Wrong email address");
       } else {
+        toast.success(`Login successful!`, {
+          transition: Slide,
+          hideProgressBar: true,
+          autoClose: 3000,
+        });
         localStorage.setItem("hamoye-user", email);
         navigate("/dashboard");
       }
