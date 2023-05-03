@@ -14,7 +14,7 @@ const Login = () => {
     const emailInputValue = e.target.value.trim();
     const emailInputFieldName = e.target.name;
 
-    if (emailInputFieldName === "email" || emailInputFieldName === "orgEmail") {
+    if (emailInputFieldName === "email") {
       const pattern =
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i || /\S+@\S+\.\S+/;
       let validEmail = pattern.test(emailInputValue);
@@ -35,12 +35,9 @@ const Login = () => {
     const passwordInputFieldName = e.target.name;
 
     if (passwordInputFieldName === "password") {
-      const minLengthRegExp = /.{6,32}/;
-      const minLengthPassword = minLengthRegExp.test(passwordInputValue);
-
       let errMsg = "";
-      if (!minLengthPassword) {
-        errMsg = "Password should be a minumum of 6 characters";
+      if (!passwordInputValue || passwordInputValue === "") {
+        errMsg = "Password is required";
       } else {
         errMsg = "";
       }
