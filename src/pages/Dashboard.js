@@ -11,8 +11,9 @@ import {
   getCurrentDate,
   getLast2Hrs,
   getLast2HrsWithParam,
-  getTimeStamp,
+  getTimeStamp
 } from "../utils/helpers";
+
 
 const Dashboard = () => {
   const user = localStorage.getItem("hamoye-user");

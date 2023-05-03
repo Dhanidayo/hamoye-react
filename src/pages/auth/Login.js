@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { database } from "../../utils/helpers";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,9 +19,9 @@ const Login = () => {
       let validEmail = pattern.test(emailInputValue);
       let errMsg = "";
       if (!emailInputValue || emailInputValue === "") {
-        errMsg = "Required";
+        errMsg = "Email is required";
       } else if (!validEmail) {
-        errMsg = "Email is not valid";
+        errMsg = "Invalid email";
       } else {
         errMsg = "";
       }
@@ -33,7 +34,7 @@ const Login = () => {
     const passwordInputFieldName = e.target.name;
 
     if (passwordInputFieldName === "password") {
-      const minLengthRegExp = /.{6,}/;
+      const minLengthRegExp = /.{6,32}/;
       const minLengthPassword = minLengthRegExp.test(passwordInputValue);
 
       let errMsg = "";
@@ -49,9 +50,24 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    localStorage.setItem("hamoye-user", email);
-    navigate("/dashboard");
+    // Find user login info
+    const userData = database.find((user) => user.email === email);
+    console.log("UserData", userData, password, email);
+
+    if (!userData) {
+      setPassErr("Invalid credentials");
+    } else {
+      if (password !== userData.password) {
+        setPassErr("Wrong password");
+      } else if (email !== userData.email) {
+        setEmailErr("Wrong email address");
+      } else {
+        localStorage.setItem("hamoye-user", email);
+        navigate("/dashboard");
+      }
+    }
   };
+
   return (
     <form className="login" onSubmit={handleSubmit}>
       <h3>Log in</h3>
